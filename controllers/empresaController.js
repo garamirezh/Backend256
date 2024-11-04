@@ -72,7 +72,7 @@ exports.eliminarEmpresas = async(req, res) => {
             res.status(404).send({msg: "Empresa no encontrado con ese ID"});
         }else{
             await Empresa.findOneAndDelete({_id: req.params.id});
-            res.json({msg: "Empresa eliminada"})
+            res.json({msg: "Empresa eliminada"});
         }
     }catch(error) {
         console.log(error);

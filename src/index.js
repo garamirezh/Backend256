@@ -14,6 +14,7 @@ app.use(express.json());
 //ruta para consumir la api de clientes
 app.use('/api/clientes', require('../routes/routesCliente'));
 app.use('/api/empresas', require('../routes/routesEmpresa'));
+app.use('/api/productos', require('../routes/routesProducto'));
 
 // ruta para verificar nuestro servidor
 app.get('/', (req, res) => {
