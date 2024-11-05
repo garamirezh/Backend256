@@ -17,8 +17,7 @@ const productoSchema = mongoose.Schema({
     },
     categoria:{
         type:String,
-        enum:['Electrónica', 'Ropa', 'Alimentos', 'Hogar', 'Otros'],
-        default: 'Otros',
+        required:true
     },
     stock:{
         type:Number,
@@ -31,11 +30,11 @@ const productoSchema = mongoose.Schema({
     },
     fechaCreacion:{
         type: Date,
-        default: Date.now,
+        required:true
     },
     ultimaActualizacion:{
         type: Date,
-        default: Date.now,
+        required:true
     }
 }, {versionkey:false});
 
