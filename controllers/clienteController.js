@@ -1,6 +1,5 @@
 const Cliente = require('../models/Cliente');
 
-
 exports.agregarClientes = async (req, res) => {
     try {
         let clientes;

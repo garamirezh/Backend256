@@ -53,10 +53,22 @@ exports.modificarProductos = async(req,res) => {
 
 exports.actualizarProductos =  async(req,res) => {
     try {
-        const productos = await Producto.findOneUpdate({_id: req.params.id}, req.body, {new:true});
+        const {nombre, descripcion, precio, categoria, stock, disponible, fechaCreacion, ultimaActualizacion} = req.body
+        let productos = await Producto.findById(req.params.id);
+
         if (!productos){
             res.status(404).send({msg: "Producto no encontrado con ese ID"});
         } else{
+            productos.nombre = nombre;
+            productos.descripcion = descripcion;
+            productos.precio = precio;
+            productos.categoria = categoria;
+            productos.stock = stock;
+            productos.disponible = disponible;
+            productos.fechaCreacion = fechaCreacion;
+            productos.ultimaActualizacion = ultimaActualizacion;
+
+            productos = await Producto.findOneUpdate({_id: req.params.id}, req.body, {new:true});
             res.json(productos)
         }
     } catch (error) {
@@ -76,6 +88,6 @@ exports.eliminarProductos = async(req,res) => {
         }
     } catch (error) {
         console.log(error);
-        res.status(500).send('hubo un error al eliminar el producto');     
+        res.status(500).send('hubo un error al eliminar el producto')     
     }
 }

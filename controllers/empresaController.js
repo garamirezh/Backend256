@@ -53,10 +53,22 @@ exports.modificarEmpresas = async(req, res) => {
 
 exports.actualizarEmpresas = async(req, res) => {
     try {
-        const empresas = await Empresa.findOneUpdate({_id: req.params.id}, req.body, {new:true});
+        const {razonsocial, nit, numeroempleados, ciudad, telefono, direccion, nombrecontacto} = req.body
+        let empresas = await Empresa.findById(req.params.id);
+        
         if(!empresas){
             res.status(404).send({msg: "Empresa no encontrado con ese ID"});
+            return
         }else{
+            empresas.razonsocial = razonsocial;
+            empresas.nit = nit;
+            empresas.numeroempleados = numeroempleados;
+            empresas.ciudad = ciudad;
+            empresas.telefono = telefono;
+            empresas.direccion = direccion;
+            empresas.nombrecontacto = nombrecontacto;
+
+            empresas = await Empresa.findOneUpdate({_id: req.params.id}, req.body, {new:true});
             res.json(empresas);
         }
     } catch (error) {
