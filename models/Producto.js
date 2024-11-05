@@ -25,8 +25,8 @@ const productoSchema = mongoose.Schema({
         min:0,
     },
     disponible:{
-        type: Boolean,
-        default: true,
+        type: String,
+        required:true,
     },
     fechaCreacion:{
         type: Date,
